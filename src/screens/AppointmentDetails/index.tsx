@@ -36,7 +36,7 @@ export function AppointmentDetails() {
         title="Detalhes"
         action={
           <BorderlessButton>
-            <Fontisto name="share" size={24} color={theme.colors.primary} />
+            <Fontisto name="share" size={22} color={theme.colors.primary} />
           </BorderlessButton>
         }
       />
@@ -48,7 +48,7 @@ export function AppointmentDetails() {
           </Text>
         </View>
       </ImageBackground>
-      <ListHeader title="Jogadores" subtitle="Total 3" />
+      <ListHeader title="Jogadores" subtitle={`Total ${members.length}`} />
       <FlatList
         data={members}
         keyExtractor={(item) => item.id}
