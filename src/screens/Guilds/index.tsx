@@ -30,9 +30,11 @@ export function Guilds({ handleGuildSelected }: Props) {
       <FlatList
         data={guilds}
         keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={() => <ListDivider />}
+        ItemSeparatorComponent={() => <ListDivider isCentered />}
         style={styles.guilds}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 68, paddingTop: 103 }}
+        ListHeaderComponent={() => <ListDivider isCentered />}
         renderItem={({ item }) => (
           <Guild onPress={() => handleGuildSelected(item)} data={item} />
         )}

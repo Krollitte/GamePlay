@@ -36,11 +36,19 @@ export function AppointmentCreate() {
   function handleOpenGuilds() {
     setOpenGuildsModal(true);
   }
+
   function handleGuildSelect(guildSelect: GuildProps) {
     setGuild(guildSelect);
     setOpenGuildsModal(false);
   }
 
+  function handleCategorySelect(categoryId: string) {
+    setCategory(categoryId);
+  }
+
+  function handleCloseGuilds() {
+    setOpenGuildsModal(false);
+  }
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -59,7 +67,7 @@ export function AppointmentCreate() {
           </Text>
           <CategorySelect
             hasCheckBox
-            setCategoryId={setCategory}
+            setCategoryId={handleCategorySelect}
             categorySelected={category}
           />
           <View style={styles.form}>
@@ -80,7 +88,9 @@ export function AppointmentCreate() {
             </RectButton>
             <View style={styles.field}>
               <View>
-                <Text style={styles.label}>Dia e mês</Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Dia e mês
+                </Text>
                 <View style={styles.column}>
                   <SmallInput maxLength={2} />
                   <Text style={styles.divider}>/</Text>
@@ -89,7 +99,9 @@ export function AppointmentCreate() {
               </View>
 
               <View>
-                <Text style={styles.label}>Hora e minuto</Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Hora e minuto
+                </Text>
                 <View style={styles.column}>
                   <SmallInput maxLength={2} />
                   <Text style={styles.divider}>:</Text>
@@ -115,7 +127,7 @@ export function AppointmentCreate() {
           </View>
         </Background>
       </ScrollView>
-      <ModalView visible={openGuildsModal}>
+      <ModalView visible={openGuildsModal} closeModal={handleCloseGuilds}>
         <Guilds handleGuildSelected={handleGuildSelect} />
       </ModalView>
     </KeyboardAvoidingView>
